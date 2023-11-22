@@ -1,0 +1,2 @@
+# ngrinder
+Install Ngrinder manually
