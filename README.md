@@ -39,3 +39,6 @@ bash ngrinder-agent-install.sh
 ```
 cd ngrinder-agent/
 ```
+```
+bash run_agent_bg.sh
+```
