@@ -12,7 +12,10 @@ NGRINDER_AGENT_URL="http://$NGRINDER_IP:$NGRINDER_PORT/agent/download/$NGRINDER_
 cd "$WORK_DIR"
 
 wget "$NGRINDER_AGENT_URL" || { echo "Failed to download nGrinder Agent."; exit 1; }
+
 tar xf "$NGRINDER_AGENT_FILE" || { echo "Failed to extract nGrinder Agent archive."; exit 1; }
+
+rm -f "$NGRINDER_AGENT_FILE"
 
 cd ngrinder-agent
 
