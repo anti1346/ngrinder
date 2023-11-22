@@ -3,7 +3,8 @@
 NGRINDER_VERSION="3.5.8"
 NGRINDER_WAR_FILE="ngrinder-controller-$NGRINDER_VERSION.war"
 
-WORK_DIR="$HOME/ngrinder/ngrinder-controller"
+#WORK_DIR="$HOME/ngrinder/ngrinder-controller"
+WORK_DIR="$PWD"
 
 SERVICE_PORT="7070"
 
