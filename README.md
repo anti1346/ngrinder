@@ -33,3 +33,9 @@ chmod +x ngrinder-agent-install.sh
 ```
 sed -i 's/NGRINDER-SERVER-IP/192.168.0.51/g' ngrinder-agent-install.sh
 ```
+```
+bash ngrinder-agent-install.sh
+```
+```
+cd ngrinder-agent/
+```
