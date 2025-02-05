@@ -26,7 +26,7 @@ services:
         soft: 1024000
         hard: 1024000
     extra_hosts:
-      - "controller:${CONTROLLER_IP}"
+      - "ngrinder-controller:${CONTROLLER_IP}"
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
       - ./ngrinder-agent:/opt/ngrinder-agent
