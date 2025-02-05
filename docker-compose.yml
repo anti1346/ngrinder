@@ -16,11 +16,11 @@ services:
     networks:
       - ngrinder-network
 
-  ngrinder-agent1:
+  ngrinder-agent:
     image: ngrinder/agent:latest
-    container_name: ngrinder-agent1    
+    container_name: ngrinder-agent    
     restart: always
-    hostname: ngrinder-agent1
+    hostname: ngrinder-agent
     sysctls:
       - net.core.somaxconn=65000
     ulimits:
@@ -33,10 +33,8 @@ services:
       nofile:
         soft: 1024000
         hard: 1024000
-    environment:
-      - NGRINDER_CONTROLLER_HOST=ngrinder-controller:8888
-    depends_on:
-      - ngrinder-controller
+    links:
+      - ngrinder-controller:controller
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
     networks:
