@@ -1,9 +1,9 @@
 services:
-  controller:
+  ngrinder-controller:
     image: ngrinder/controller:latest
-    container_name: controller    
+    container_name: ngrinder-controller    
     restart: always
-    hostname: controller
+    hostname: ngrinder-controller
     sysctls:
       - net.core.somaxconn=65000
     volumes:
@@ -16,11 +16,11 @@ services:
     networks:
       - ngrinder-network
 
-  agent1:
+  ngrinder-agent1:
     image: ngrinder/agent:latest
-    container_name: agent1    
+    container_name: ngrinder-agent1    
     restart: always
-    hostname: agent1
+    hostname: ngrinder-agent1
     sysctls:
       - net.core.somaxconn=65000
     ulimits:

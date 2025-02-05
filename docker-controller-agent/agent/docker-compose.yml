@@ -1,20 +1,11 @@
-#!/bin/bash
-
-CONTROLLER_IP=$(grep ^CONTROLLER_IP= .env | cut -d '=' -f 2)
-
-wget http://${CONTROLLER_IP}:8888/agent/download -O ngrinder-agent.tar
-
-tar xvf ngrinder-agent.tar
-
-cat <<'EOF' > docker-compose.yml
 services:
-  agent2:
+  agent:
     image: ngrinder/agent:latest
-    container_name: agent2
+    container_name: agent
     restart: always
-    hostname: agent2
-    sysctls:
-      - net.core.somaxconn=65000
+    hostname: agent
+    # sysctls:
+    #   - net.core.somaxconn=65000
     ulimits:
       memlock:
         soft: -1
@@ -29,6 +20,6 @@ services:
       - "controller:${CONTROLLER_IP}"
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
-      - ./ngrinder-data:/opt/ngrinder-agent
+      - ./ngrinder-agent:/opt/ngrinder-agent
+      #- ./ngrinder-data/agent.conf:/opt/ngrinder-agent/.ngrinder-agent/agent.conf
     network_mode: host
-EOF
