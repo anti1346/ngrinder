@@ -1,5 +1,5 @@
-# ngrinder
-Install Ngrinder manually
+# nGrinder
+Install nGrinder manually
 
 ### nGrinder controller, agent 실행
 ##### github clone
