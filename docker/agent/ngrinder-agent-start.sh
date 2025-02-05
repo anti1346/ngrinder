@@ -30,7 +30,7 @@ services:
         soft: 1024000
         hard: 1024000
     environment:
-      - CONTROLLER_IP=${CONTROLLER_IP}
+      CONTROLLER_IP: ${CONTROLLER_IP}
     extra_hosts:
       - "ngrinder-agent2:127.0.0.1"
     volumes:
