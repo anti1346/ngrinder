@@ -13,8 +13,8 @@ services:
     container_name: ngrinder-agent2
     restart: always
     hostname: ngrinder-agent2
-    sysctls:
-      - net.core.somaxconn=65000
+    # sysctls:
+    #   - net.core.somaxconn=65000
     ulimits:
       memlock:
         soft: -1
