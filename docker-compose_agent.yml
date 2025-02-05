@@ -16,8 +16,8 @@ services:
       nofile:
         soft: 1024000
         hard: 1024000
-    environment:
-      - NGRINDER_CONTROLLER_HOST=192.168.10.177:8888
+    extra_hosts:
+      - "controller:192.168.10.177"
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
     networks:
