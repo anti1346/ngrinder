@@ -6,8 +6,9 @@ bash ngrinder-agent-start.sh
 ```
 ##### ngrinder agent 실행
 ```
-docker-compose up -d
+docker compose up -d
 ```
+
 <details>
 <summary>접기/펼치기</summary>
 
@@ -16,7 +17,6 @@ docker-compose up -d
 wget http://{ngrinder-controller-ip}:8888/agent/download -O ngrinder-agent.tar
 tar xvf ngrinder-agent.tar
 ```
-
 ##### controller server ip change
 ```
 vim docker-ngrinder-agent/ngrinder-agent/.ngrinder-agent/agent.conf
