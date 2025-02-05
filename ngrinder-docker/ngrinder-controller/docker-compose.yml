@@ -1,17 +1,47 @@
-version: '3.9'
 services:
-
   controller:
-    image: ngrinder/controller:${NGRINDER_VERSION}
+    image: ngrinder/controller:latest
+    container_name: controller    
     restart: always
-    container_name: controller
     hostname: controller
     sysctls:
       - net.core.somaxconn=65000
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
-      - ./ngrinder-data:/opt/ngrinder-controller
+      - ./controller-date:/opt/ngrinder-controller
     ports:
       - 8888:80
       - 16001:16001
       - 12000-12009:12000-12009
+    networks:
+      - ngrinder-network
+
+  agent1:
+    image: ngrinder/agent:latest
+    container_name: agent1    
+    restart: always
+    hostname: agent1
+    sysctls:
+      - net.core.somaxconn=65000
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nproc:
+        soft: 1024000
+        hard: 1024000
+      nofile:
+        soft: 1024000
+        hard: 1024000
+    environment:
+      - NGRINDER_CONTROLLER_HOST=controller:8888
+    depends_on:
+      - controller
+    volumes:
+      - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
+    networks:
+      - ngrinder-network
+
+networks:
+  ngrinder-network:
+    driver: bridge

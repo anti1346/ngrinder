@@ -5,15 +5,14 @@ wget http://${CONTROLLER_IP}:8888/agent/download -O ngrinder-agent.tar
 tar xvf ngrinder-agent.tar
 
 cat <<'EOF' > docker-compose.yml
-version: '3.8'
 services:
-  agent:
-    image: ngrinder/agent:${NGRINDER_VERSION}
-    container_name: agent
+  agent2:
+    image: ngrinder/agent:latest
+    container_name: agent2
     restart: always
-    hostname: agent
-    # sysctls:
-    #   - net.core.somaxconn=65000
+    hostname: agent2
+    sysctls:
+      - net.core.somaxconn=65000
     ulimits:
       memlock:
         soft: -1
@@ -29,6 +28,5 @@ services:
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
       - ./ngrinder-data:/opt/ngrinder-agent
-      #- ./ngrinder-data/agent.conf:/opt/ngrinder-agent/.ngrinder-agent/agent.conf
     network_mode: host
 EOF
