@@ -4,6 +4,8 @@ services:
     container_name: ngrinder-controller    
     restart: always
     hostname: ngrinder-controller
+    env_file:
+      - ./../.env
     sysctls:
       - net.core.somaxconn=65000
     volumes:
@@ -21,6 +23,8 @@ services:
     container_name: ngrinder-agent1    
     restart: always
     hostname: ngrinder-agent1
+    env_file:
+      - ./../.env
     sysctls:
       - net.core.somaxconn=65000
     ulimits:

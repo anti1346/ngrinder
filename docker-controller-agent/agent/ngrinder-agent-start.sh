@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTROLLER_IP=$(grep ^CONTROLLER_IP= .env | cut -d '=' -f 2)
+CONTROLLER_IP=$(grep ^CONTROLLER_IP= ./../.env | cut -d '=' -f 2)
 
 wget http://${CONTROLLER_IP}:8888/agent/download -O ngrinder-agent.tar
 
@@ -13,6 +13,8 @@ services:
     container_name: ngrinder-agent2
     restart: always
     hostname: ngrinder-agent2
+    env_file:
+      - ./../.env
     # sysctls:
     #   - net.core.somaxconn=65000
     ulimits:
