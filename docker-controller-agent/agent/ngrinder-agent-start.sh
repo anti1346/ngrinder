@@ -6,6 +6,8 @@ wget http://${CONTROLLER_IP}:8888/agent/download -O ngrinder-agent.tar
 
 tar xvf ngrinder-agent.tar
 
+rm -f ngrinder-agent.tar
+
 cat <<'EOF' > docker-compose.yml
 services:
   ngrinder-agent2:
