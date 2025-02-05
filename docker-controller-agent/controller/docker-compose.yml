@@ -36,7 +36,7 @@ services:
     environment:
       - NGRINDER_CONTROLLER_HOST=controller:8888
     depends_on:
-      - controller
+      - ngrinder-controller
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
     networks:
