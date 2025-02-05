@@ -1,8 +1,8 @@
 services:
   agent2:
     image: ngrinder/agent:latest
+    container_name: agent2    
     restart: always
-    container_name: agent2
     hostname: agent2
     sysctls:
       - net.core.somaxconn=65000
@@ -17,7 +17,7 @@ services:
         soft: 1024000
         hard: 1024000
     environment:
-      - NGRINDER_CONTROLLER_HOST=192.168.10.177
+      - NGRINDER_CONTROLLER_HOST=192.168.10.177:8888
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
     networks:

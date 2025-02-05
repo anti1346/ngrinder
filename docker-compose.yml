@@ -1,8 +1,8 @@
 services:
   controller:
     image: ngrinder/controller:latest
+    container_name: controller    
     restart: always
-    container_name: controller
     hostname: controller
     sysctls:
       - net.core.somaxconn=65000
@@ -18,8 +18,8 @@ services:
 
   agent1:
     image: ngrinder/agent:latest
+    container_name: agent1    
     restart: always
-    container_name: agent1
     hostname: agent1
     sysctls:
       - net.core.somaxconn=65000
@@ -34,7 +34,7 @@ services:
         soft: 1024000
         hard: 1024000
     environment:
-      - NGRINDER_CONTROLLER_HOST=controller        
+      - NGRINDER_CONTROLLER_HOST=controller:8888
     depends_on:
       - controller
     volumes:
