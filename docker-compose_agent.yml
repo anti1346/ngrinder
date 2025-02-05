@@ -1,0 +1,28 @@
+services:
+  agent2:
+    image: ngrinder/agent:latest
+    restart: always
+    container_name: agent2
+    hostname: agent2
+    sysctls:
+      - net.core.somaxconn=65000
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nproc:
+        soft: 1024000
+        hard: 1024000
+      nofile:
+        soft: 1024000
+        hard: 1024000
+    environment:
+      - NGRINDER_CONTROLLER_HOST=192.168.10.177
+    volumes:
+      - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
+    networks:
+      - ngrinder-network
+
+networks:
+  ngrinder-network:
+    driver: bridge
