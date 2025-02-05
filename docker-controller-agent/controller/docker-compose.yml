@@ -39,6 +39,7 @@ services:
       - ngrinder-controller
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
+      - ./ngrinder-agent:/opt/ngrinder-agent
     networks:
       - ngrinder-network
 

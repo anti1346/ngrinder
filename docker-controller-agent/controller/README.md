@@ -1,7 +1,7 @@
 # ngrinder controller
 #### ngrinder controller 실행
 ```
-docker-compose up -d
+docker compose up -d ngrinder-controller
 ```
 #### ngrinder 웹 페이지 접속
 ```
