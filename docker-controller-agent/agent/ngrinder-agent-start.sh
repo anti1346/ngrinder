@@ -25,10 +25,17 @@ services:
       nofile:
         soft: 1024000
         hard: 1024000
+    environment:
+      - CONTROLLER_IP=${CONTROLLER_IP}
     extra_hosts:
-      - "ngrinder-controller:${CONTROLLER_IP}"
+      - "ngrinder-agent2:127.0.0.1"
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
       - ./ngrinder-agent:/opt/ngrinder-agent
-    network_mode: host
+    networks:
+      - ngrinder-network
+
+  networks:
+    ngrinder-network:
+      driver: bridge
 EOF
