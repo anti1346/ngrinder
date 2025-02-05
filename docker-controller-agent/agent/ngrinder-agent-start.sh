@@ -35,7 +35,7 @@ services:
     networks:
       - ngrinder-network
 
-  networks:
-    ngrinder-network:
-      driver: bridge
+networks:
+  ngrinder-network:
+    driver: bridge
 EOF

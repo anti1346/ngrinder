@@ -1,5 +1,5 @@
 services:
-  agent:
+  ngrinder-agent2:
     image: ngrinder/agent:latest
     container_name: agent
     restart: always
