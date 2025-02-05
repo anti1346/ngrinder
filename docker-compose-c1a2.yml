@@ -1,26 +1,26 @@
-version: '3.8'
 services:
-
-  controller:
-    image: ngrinder/controller:${NGRINDER_VERSION}
+  ngrinder-controller:
+    image: ngrinder/controller:latest
+    container_name: ngrinder-controller    
     restart: always
-    container_name: controller
-    hostname: controller
+    hostname: ngrinder-controller
     sysctls:
       - net.core.somaxconn=65000
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
-      - ./ngrinder-data:/opt/ngrinder-controller
+      - ./controller-date:/opt/ngrinder-controller
     ports:
       - 8888:80
       - 16001:16001
       - 12000-12009:12000-12009
+    networks:
+      - ngrinder-network
 
-  agent1:
-    image: ngrinder/agent:${NGRINDER_VERSION}
+  ngrinder-agent1:
+    image: ngrinder/agent:latest
+    container_name: ngrinder-agent1
     restart: always
-    container_name: agent1
-    hostname: agent1
+    hostname: ngrinder-agent1
     sysctls:
       - net.core.somaxconn=65000
     ulimits:
@@ -34,17 +34,17 @@ services:
         soft: 1024000
         hard: 1024000
     links:
-      - controller:controller
+      - ngrinder-controller:controller
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
-      #- ./ngrinder-agent:/opt/ngrinder-agent
-      #- ./ngrinder-agent/agent.conf:/opt/ngrinder-agent/.ngrinder-agent/agent.conf
+    networks:
+      - ngrinder-network
 
-  agent2:
-    image: ngrinder/agent:${NGRINDER_VERSION}
+  ngrinder-agent2:
+    image: ngrinder/agent:latest
+    container_name: ngrinder-agent2
     restart: always
-    container_name: agent2
-    hostname: agent2
+    hostname: ngrinder-agent2
     sysctls:
       - net.core.somaxconn=65000
     ulimits:
@@ -58,8 +58,12 @@ services:
         soft: 1024000
         hard: 1024000
     links:
-      - controller:controller
+      - ngrinder-controller:controller
     volumes:
       - /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
-      #- ./ngrinder-agent:/opt/ngrinder-agent
-      #- ./ngrinder-agent/agent.conf:/opt/ngrinder-agent/.ngrinder-agent/agent.conf
+    networks:
+      - ngrinder-network
+
+networks:
+  ngrinder-network:
+    driver: bridge
