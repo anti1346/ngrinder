@@ -1,4 +1,4 @@
 #!/bin/bash
 
-git checkout main
-git pull origin main
+git reset --hard HEAD
+git pull
